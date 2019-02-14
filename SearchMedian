@@ -1,0 +1,32 @@
+LeetCode #571
+
+The Numbers table keeps the value of number and its frequency.
+
++----------+-------------+
+|  Number  |  Frequency  |
++----------+-------------|
+|  0       |  7          |
+|  1       |  1          |
+|  2       |  3          |
+|  3       |  1          |
++----------+-------------+
+In this table, the numbers are 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 3, so the median is (0 + 0) / 2 = 0. How to find median (output shown) given frequency of numbers?
+
++--------+
+| median |
++--------|
+| 0.0000 |
++--------+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Jie Jian, 13 Feb 2019
+
+First, denote the frequency of current number as $n$, the sum of frequency of the numbers at the left as $l$, the sum of frequency of the numbers at the right as $r$.
+Note that $n + l + r = total frequency$.
+
+To prove that $|l-r| \leq n$ indicates we've obtained a median, we can prove the equivalent statement that for any non-median, we have that $|l-r| \geq n$.
+
+For any non-median, the string including all the current numbers does not cover the mid position (when total frequency is odd) or the two mid positions (when total frequency is even).
+
+If the string is at the left half, then we have $r > [(l+n+r)/2]$ and $l < [(l+n+r)/2] - n$. Hence, $|l-r| = r-l >  [(l+n+r)/2] - ( [(l+n+r)/2] -n ) = n $.
+Similarly, if the string is at the right half, then we also have $|l-r| > n$.
